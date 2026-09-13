@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root {
+  font-family: Inter, sans-serif;
+  color: #29251f;
+  background: #f7f1e7;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+
+  background: #f7f1e7;
+  color: #29251f;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a,
+select,
+textarea,
+input,
+.menu-card {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =====================================================
+   FOCUS STATES
+===================================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #8a6a4a;
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   PAGE ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+/*
+  IMPORTANT:
+  Do NOT put transform: translateY(0) on
+  .reveal-visible.
+
+  Menu uses Tailwind transforms such as
+  lg:translate-y-8 for the staggered layout.
+*/
+
+.reveal-hidden {
+  opacity: 0;
+
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =====================================================
+   IMAGE HOVER
+===================================================== */
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.05);
+}
+
+/* =====================================================
+   MENU CARDS
+===================================================== */
+
+.menu-card {
+  will-change: transform;
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow:
+    0 22px 50px
+    rgba(41, 37, 31, 0.12);
+}
+
+.menu-card img {
+  will-change: transform;
+}
+
+/* =====================================================
+   BUTTONS + LINKS
+===================================================== */
+
+button,
+a {
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+button:active,
+a:active {
+  transform: scale(0.97);
+}
+
+/* =====================================================
+   AI RECOMMENDATION ANIMATION
+===================================================== */
+
+@keyframes aiResult {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-ai-result {
+  animation:
+    aiResult 0.55s ease-out forwards;
+}
+
+/* =====================================================
+   LOADING SHIMMER
+===================================================== */
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation:
+    shimmer 1.5s infinite;
+}
+
+/* =====================================================
+   CATEGORY SCROLLBAR
+===================================================== */
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================================================
+   TEXT SELECTION
+===================================================== */
+
+::selection {
+  background: #29251f;
+  color: #fffdf8;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 639px) {
+
+  html {
+    scroll-padding-top: 90px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /*
+    Don't make menu cards jump upward on touch devices.
+  */
+
+  .menu-card:hover {
+    transform: none;
+
+    box-shadow:
+      0 18px 45px
+      rgba(41, 37, 31, 0.10);
+  }
+
+  /*
+    Slightly faster image interaction on mobile.
+  */
+
+  .image-hover img {
+    transition:
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+
+  html {
+    scroll-padding-top: 100px;
+  }
+
+}
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 1024px) {
+
+  html {
+    scroll-padding-top: 110px;
+  }
+
+  /*
+    Desktop menu cards get their hover lift.
+  */
+
+  .menu-card:hover {
+    transform: translateY(-7px);
+  }
+
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-hidden,
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+}
